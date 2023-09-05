@@ -4,7 +4,6 @@ class TradesController < ApplicationController
 
   def index;end
 
-
   def generate_gain
     date = params[:date]
     @possible_gain = TradeGenerationService.new(data: @trades, date: date).call
