@@ -11,6 +11,8 @@ class TradesController < ApplicationController
   private
 
   def date
+    return Date.current unless params[:date].present?
+
     params[:date].to_date
   end
 
