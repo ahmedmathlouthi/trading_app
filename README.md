@@ -1,24 +1,18 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Trading App
 
-Things you may want to cover:
+This Readme explains how to run the app and check the APIs 
 
-* Ruby version
+#### Steps to run the app: 
 
-* System dependencies
+- Clone the project
+- Run `rails db:create db:migrate db:seed`
+- Run `rails s`
 
-* Configuration
+In order to list all the trades head to the browser and type `http://localhost:300/trades?date='10-01-2023`
 
-* Database creation
+In order to get the maximum gain of a trade for a given date type `http://localhost:3000/trades/generate_gain?date='10-01-2023`
+note that the date is a given input and can change and if there is no date we're gonna have the trades for the current day
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+In order to run the specs run `rspec`
