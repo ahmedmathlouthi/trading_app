@@ -5,8 +5,9 @@ describe TradesController, :type => :controller do
   render_views
 
   describe '#index' do
-    let!(:trade) { create(:trade) }
-    subject(:get_trades) { get :index, format: :json }
+    let(:date) { Date.current.yesterday }
+    let!(:trade) { create(:trade, time: date.beginning_of_day + 1.hour) }
+    subject(:get_trades) { get :index, format: :json, params: { date: date } }
 
     it 'render trades' do
       get_trades

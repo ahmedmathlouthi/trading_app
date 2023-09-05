@@ -1,17 +1,20 @@
 class TradesController < ApplicationController
 
-  before_action :get_trades
+  before_action :filter_trades
 
-  def index;end
+  def index; end
 
   def generate_gain
-    date = params[:date]
     @possible_gain = TradeGenerationService.new(data: @trades, date: date).call
   end
 
-  private 
+  private
 
-  def get_trades
-    @trades = Trade.all
+  def date
+    params[:date].to_date
+  end
+
+  def filter_trades
+    @trades = Trade.where(time: date.beginning_of_day..date.end_of_day)
   end
 end

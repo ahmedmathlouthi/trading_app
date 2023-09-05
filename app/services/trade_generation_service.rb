@@ -1,24 +1,20 @@
 class TradeGenerationService
   def initialize(data:, date:)
       @data = data
-      @date = date.to_date
+      @date = date
   end
 
-  def call 
+  def call
     generate_gain
   end
 
   private
 
   def generate_gain
-    return 0 unless filtered_data.present?
+    return 0 unless @data.present?
 
-    lowest_price, highest_price = filtered_data.pluck(:value).minmax
+    lowest_price, highest_price = @data.pluck(:value).minmax
 
-    filtered_data.count * ( highest_price - lowest_price )
-  end
-
-  def filtered_data
-    @data.where(time: @date.beginning_of_day..@date.end_of_day)
+    @data.count * ( highest_price - lowest_price )
   end
 end
